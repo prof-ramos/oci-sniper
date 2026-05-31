@@ -63,11 +63,11 @@ O script vem configurado por padrão com um `sleep 60` (espera de 60 segundos) e
 
 ## 🗺️ Deploy Ativo (VPS Hermes)
 
-Para fins de registro, o script atualmente encontra-se em execução contínua na sua VPS **Hermes**.
+Para fins de registro, o script atualmente encontra-se em execução contínua na sua VPS **Hermes** através do clone oficial deste repositório.
 
-- **Caminho do script na VPS:** `~/oci_auto_provision_arm.sh`
-- **Caminho dos logs:** `~/oci_provision_arm.log`
+- **Caminho do script na VPS:** `~/oci-sniper/oci-sniper.sh`
+- **Caminho dos logs:** `~/oci-sniper/sniper.log`
 
 **Comandos úteis na VPS:**
-- Para acompanhar a execução: `tail -f ~/oci_provision_arm.log`
-- Para interromper a caçada: `pkill -f oci_auto_provision_arm.sh`
+- Para acompanhar a execução: `tail -f ~/oci-sniper/sniper.log`
+- Para interromper a caçada: `pkill -f oci-sniper.sh`
