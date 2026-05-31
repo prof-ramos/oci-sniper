@@ -8,6 +8,9 @@ O **OCI Sniper** é um script de automação em Bash desenvolvido para contornar
 
 A região de São Paulo (`sa-saopaulo-1`), assim como outras regiões concorridas, frequentemente fica sem capacidade para as poderosas instâncias gratuitas **ARM (Ampere A1 de 4 OCPUs e 24GB de RAM)**. Quando tentamos criar manualmente, nos deparamos com o erro clássico: *Out of host capacity*.
 
+> [!NOTE]
+> **Por que não mudar de região?** Na Oracle Cloud, todos os recursos *Always Free* são atrelados permanentemente à sua **Home Region** (Região Principal), escolhida no momento da criação da conta. Essa escolha é irreversível e intransferível. Como você não pode simplesmente migrar sua cota gratuita para uma região mais vazia, automatizar a "pescaria" de uma vaga na sua Home Region congestionada acaba sendo a única saída.
+
 Este script resolve o problema rodando em loop e enviando requisições automatizadas a cada 60 segundos via OCI CLI. Assim que a Oracle liberar um novo lote, o sniper "pesca" a vaga para você automaticamente! 🎣
 
 > [!NOTE]
