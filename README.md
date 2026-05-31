@@ -58,3 +58,16 @@ Este script resolve o problema rodando em loop e enviando requisições automati
 > Use esta ferramenta com responsabilidade! A Oracle possui sistemas rigorosos de *rate-limiting* (limite de taxa) para prevenir abusos de API. 
 
 O script vem configurado por padrão com um `sleep 60` (espera de 60 segundos) entre as requisições. **Não diminua muito esse tempo**, pois inundar a API com requisições por segundo pode resultar no bloqueio temporário (429 Too Many Requests) ou banimento da sua conta. A paciência é a melhor arma de um Sniper.
+
+---
+
+## 🗺️ Deploy Ativo (VPS Hermes)
+
+Para fins de registro, o script atualmente encontra-se em execução contínua na sua VPS **Hermes**.
+
+- **Caminho do script na VPS:** `~/oci_auto_provision_arm.sh`
+- **Caminho dos logs:** `~/oci_provision_arm.log`
+
+**Comandos úteis na VPS:**
+- Para acompanhar a execução: `tail -f ~/oci_provision_arm.log`
+- Para interromper a caçada: `pkill -f oci_auto_provision_arm.sh`
