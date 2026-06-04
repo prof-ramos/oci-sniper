@@ -19,7 +19,7 @@ echo "=========================================================="
 while true; do
     echo "[$(date)] Tentando provisionar a instância ARM..."
     
-    OUTPUT=$(/root/bin/oci compute instance launch \
+    OUTPUT=$(oci compute instance launch \
         --compartment-id "$COMPARTMENT_ID" \
         --availability-domain "$AD" \
         --shape "$SHAPE" \
