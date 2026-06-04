@@ -37,3 +37,15 @@
 9. **Gerenciamento de atalhos SSH (`~/.ssh/config` com Symlinks)**
    - *O que aconteceu:* O arquivo `~/.ssh/config` do usuário é frequentemente um Symlink apontando para um repositório de `dotfiles` (ex: `~/dotfiles/ssh/.ssh/config`).
    - *Solução/Feedback:* Nunca usar redirecionamentos simples de bash (`cat <<EOF >> ~/.ssh/config`) pois isso pode quebrar symlinks ou corromper o arquivo. Use sempre as ferramentas do editor (replace_file_content) lendo o caminho resolvido primeiro.
+
+10. **Scripts de Automação com OCI CLI travando (Hanging) no Nohup**
+    - *O que aconteceu:* Ao executar o `oci compute instance launch` dentro do script com `nohup`, o processo travou indefinidamente no background e não gerou output. Isso ocorreu porque, na primeira execução, o OCI CLI aciona um prompt interativo solicitando permissão para telemetria (`[Y/n]`).
+    - *Solução/Feedback:* Em scripts de automação ou uso de OCI CLI desatendido, **sempre** adicionar as variáveis de ambiente `export OCI_CLI_TELEMETRY_OPT_OUT=True` e `export OCI_CLI_SUPPRESS_FILE_PERMISSIONS_WARNING=True` no topo do script para evitar qualquer prompt bloqueante.
+
+11. **Pkill fechando prematuramente sessões SSH**
+    - *O que aconteceu:* Ao enviar um comando como `ssh host "pkill -f oci-sniper.sh ; nohup ./oci-sniper.sh &"`, o comando `pkill` matou a própria string do comando `ssh` (pois o nome do arquivo estava nela), fechando a conexão com Exit Code 255 e impedindo o restart.
+    - *Solução/Feedback:* Evitar `pkill -f` com strings genéricas em comandos remotos encadeados via SSH. Em vez disso, use grep mais restrito (`ps aux | grep "[o]ci-sniper" | awk '{print $2}' | xargs kill`) ou `killall`.
+
+12. **Paths "Hardcoded" em scripts Shell**
+    - *O que aconteceu:* O script do sniper estava com a chamada ao binário restrita para `/root/bin/oci`. Quando transferimos para o usuário `ubuntu` da nova VPS, retornou `Permission denied`.
+    - *Solução/Feedback:* Sempre projetar scripts para buscar dependências do `$PATH` do usuário ativo, substituindo `/root/bin/comando` por apenas `comando`.
