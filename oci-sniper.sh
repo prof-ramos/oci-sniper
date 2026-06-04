@@ -3,6 +3,8 @@
 # This script will attempt to create the instance every 60 seconds until successful.
 
 export PYTHONWARNINGS="ignore"
+export OCI_CLI_SUPPRESS_FILE_PERMISSIONS_WARNING=True
+export OCI_CLI_TELEMETRY_OPT_OUT=True
 
 COMPARTMENT_ID="ocid1.tenancy.oc1..aaaaaaaa4xttsrbhf5hb2rfjo5ul3ve2hbwt24amy5aequvczeku3d3fvgza"
 AD="OdIO:SA-SAOPAULO-1-AD-1"
