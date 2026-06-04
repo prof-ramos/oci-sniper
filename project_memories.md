@@ -49,3 +49,7 @@
 12. **Paths "Hardcoded" em scripts Shell**
     - *O que aconteceu:* O script do sniper estava com a chamada ao binário restrita para `/root/bin/oci`. Quando transferimos para o usuário `ubuntu` da nova VPS, retornou `Permission denied`.
     - *Solução/Feedback:* Sempre projetar scripts para buscar dependências do `$PATH` do usuário ativo, substituindo `/root/bin/comando` por apenas `comando`.
+
+13. **Verificação de Fingerprint bloqueando scripts SSH**
+    - *O que aconteceu:* Ao tentar rodar um comando remoto via `ssh` em um HostName recém-criado na Tailscale (`hermes-vps`), o comando travou aguardando a confirmação interativa do fingerprint ("Are you sure you want to continue connecting?").
+    - *Solução/Feedback:* Ao acessar um host via CLI/automação pela primeira vez em um novo DNS/IP, usar sempre a flag `-o StrictHostKeyChecking=accept-new` ou `=no` para não travar a execução assíncrona aguardando um input de teclado.
