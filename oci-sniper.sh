@@ -43,6 +43,10 @@ while true; do
         echo "SUCESSO ABSOLUTO! A INSTÂNCIA FOI PROVISIONADA! 🎉"
         echo "=========================================================="
         echo "$OUTPUT"
+        
+        # Notificar o hermes-agent remotamente
+        ssh -o StrictHostKeyChecking=no root@100.103.209.87 "/root/.local/bin/hermes chat -q '🚨 ALERTA: A instância ARM foi provisionada com SUCESSO na Oracle Cloud!'" || true
+        
         break
     else
         echo "Erro desconhecido ao tentar criar a instância:"
